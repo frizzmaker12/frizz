@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frizz — Money Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <h1>💸 Frizz</h1>
+      <p class="tagline">Your personal money manager</p>
+    </div>
+  </header>
+
+  <!-- ===== SUMMARY CARDS ===== -->
+  <main>
+    <section class="summary-grid">
+      <div class="card card-income">
+        <span class="card-label">Total Income</span>
+        <span class="card-value" id="totalIncome">Rp 0</span>
+      </div>
+      <div class="card card-expense">
+        <span class="card-label">Total Expenses</span>
+        <span class="card-value" id="totalExpense">Rp 0</span>
+      </div>
+      <div class="card card-balance" id="balanceCard">
+        <span class="card-label">Balance</span>
+        <span class="card-value" id="balance">Rp 0</span>
+      </div>
+    </section>
+
+    <!-- ===== WARNING BANNER ===== -->
+    <div class="warning-banner hidden" id="warningBanner">
+      ⚠️ <strong>Warning!</strong> Your total expenses have exceeded your total income!
+    </div>
+
+    <!-- ===== ALLOCATION SECTION ===== -->
+    <section class="allocation-section">
+      <h2>Income Allocation</h2>
+      <p class="allocation-hint">Set how you want to split your income across categories (%).</p>
+
+      <div class="allocation-grid" id="allocationGrid">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="allocation-total-row">
+        <span>Total allocated: <strong id="allocTotal">0%</strong></span>
+        <span id="allocWarning" class="alloc-warning hidden">Total must equal 100%</span>
+      </div>
+    </section>
+
+    <!-- ===== CATEGORY BUDGET OVERVIEW ===== -->
+    <section class="budget-overview">
+      <h2>Category Budget vs Spent</h2>
+      <div class="budget-grid" id="budgetGrid">
+        <!-- filled by JS -->
+      </div>
+    </section>
+
+    <!-- ===== ADD TRANSACTION ===== -->
+    <section class="form-section">
+      <h2>Add Transaction</h2>
+      <form id="txForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txDesc">Description</label>
+            <input type="text" id="txDesc" placeholder="e.g. Salary, Groceries…" required />
+          </div>
+          <div class="form-group">
+            <label for="txAmount">Amount (Rp)</label>
+            <input type="number" id="txAmount" placeholder="0" min="1" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="txType">Type</label>
+            <select id="txType">
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+          </div>
+          <div class="form-group" id="categoryGroup">
+            <label for="txCategory">Category</label>
+            <select id="txCategory">
+              <option value="shopping">🛒 Shopping / Daily Life</option>
+              <option value="parents">👨‍👩‍👧 Money for Parents</option>
+              <option value="savings">🏦 Savings</option>
+              <option value="investment">📈 Investment</option>
+              <option value="hobbies">🎮 Hobbies</option>
+              <option value="debt">💳 Debt</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="txDate">Date</label>
+            <input type="date" id="txDate" required />
+          </div>
+        </div>
+        <button type="submit" class="btn-add">+ Add Transaction</button>
+      </form>
+    </section>
+
+    <!-- ===== TRANSACTION LIST ===== -->
+    <section class="tx-section">
+      <div class="tx-header">
+        <h2>Transactions</h2>
+        <div class="tx-filters">
+          <select id="filterType">
+            <option value="all">All Types</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <select id="filterCategory">
+            <option value="all">All Categories</option>
+            <option value="shopping">🛒 Shopping / Daily Life</option>
+            <option value="parents">👨‍👩‍👧 Parents</option>
+            <option value="savings">🏦 Savings</option>
+            <option value="investment">📈 Investment</option>
+            <option value="hobbies">🎮 Hobbies</option>
+            <option value="debt">💳 Debt</option>
+          </select>
+          <button class="btn-clear" id="clearAll">🗑 Clear All</button>
+        </div>
+      </div>
+      <div class="tx-list" id="txList">
+        <p class="empty-state">No transactions yet. Add one above!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Frizz © 2026 — Built with ❤️ and Vanilla JS</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
